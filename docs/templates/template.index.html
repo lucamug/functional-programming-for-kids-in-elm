@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no" />
+    <meta name="google" content="notranslate" />
+    <meta name="description" content="Bootstrap for Elm projects" />
+    <title>Functional Programming for Kids in Elm</title>
+    <link rel="shortcut icon" sizes="16x16 32x32 48x48 64x64 128x128 256x256" href="favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Fira+Sans:wght@100;400;800&display=swap" rel="stylesheet">
+    <style>
+      body {
+        margin: 0;
+        font-family: "Fira Sans", Helvetica, Arial, sans-serif;
+      }
+    </style>
+  </head>
+
+  <body>
+    <noscript>Please enable JavaScript to use this page.</noscript>
+    <div id="app"></div>
+    <script>
+      env = {
+        commit: '${COMMIT}',
+        version: '${VERSION}',
+        service: '${SERVICE}',
+        tenant: '${TENANT}',
+        branch: '${BRANCH}',
+        repoName: '${REPO}',
+        pwd: '${PWD}',
+        buildEpoch: '${BUILD_EPOCH}',
+        buildTimestampIso: '${BUILD_TIMESTAMP_ISO}',
+        buildTimestamp: '${BUILD_TIMESTAMP}',
+      };
+    </script>
+    <script src="elm-canvas.js"></script>
+    <script class="dev-only" src="elm.js"></script>
+    <!-- prod-only <script src="elm-${COMMIT}.min.js"></script> -->
+    <script src="starter.js"></script>
+  </body>
+</html>

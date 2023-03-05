@@ -1,0 +1,8 @@
+elm-stuff
+build/
+docs/*.html
+node_modules/
+docs/elm.js
+.DS_Store
+Elmjutsu*.elm
+/index.html

@@ -1,0 +1,34 @@
+#!/bin/bash
+set -eu
+
+# COMMIT=$1
+# BRANCH=$2
+COMMIT=`git rev-parse --short HEAD`
+BRANCH=`git rev-parse --abbrev-ref HEAD`
+source cmd/config $COMMIT $BRANCH
+FOLDER_DOCS="docs/"
+
+rm -rf ${FOLDER_DIST}
+mkdir ${FOLDER_DIST}
+mkdir ${FOLDER_TEMP}
+
+
+function fromTemplateToHtml {
+    local FOLDER=$1
+    local FILE_NAME=$2
+    createIndexHtml ${FOLDER}/templates/template.${FILE_NAME}.html ${FOLDER_TEMP}/${FILE_NAME}.1.html > /dev/null
+    devToProdHtml   ${FOLDER_TEMP}/${FILE_NAME}.1.html   ${FOLDER_TEMP}/${FILE_NAME}.2.html
+    cp              ${FOLDER_TEMP}/${FILE_NAME}.2.html   ${FOLDER_DIST}/${FILE_NAME}.html
+}
+
+cp    ${FOLDER_DOCS}elm-canvas.js ${FOLDER_DIST}
+cp    ${FOLDER_DOCS}starter.js    ${FOLDER_DIST}
+cp    ${FOLDER_DOCS}favicon.ico   ${FOLDER_DIST}
+cp    ${FOLDER_DOCS}robots.txt    ${FOLDER_DIST}
+cp -r ${FOLDER_DOCS}images     ${FOLDER_DIST}
+
+fromTemplateToHtml ${FOLDER_DOCS} index
+
+node_modules/.bin/elm make src/Main.elm --optimize --output ${FOLDER_TEMP}/elm.js
+cmd/minify.js
+cp ${FOLDER_TEMP}/elm.min.js ${FOLDER_DIST}/elm-${COMMIT}.min.js

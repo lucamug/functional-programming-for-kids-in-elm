@@ -1,0 +1,12 @@
+#!/bin/bash
+set -eu
+
+COMMIT=`git rev-parse --short HEAD`
+BRANCH=`git rev-parse --abbrev-ref HEAD`
+source cmd/config $COMMIT $BRANCH
+
+createIndexHtml docs/templates/template.index.html docs/index.html
+COMMAND1="elm-watch hot 'Main'"
+COMMAND2="http-server docs -c-1 --cors --port=8002 --silent"
+COMMAND="${COMMAND1} & ${COMMAND2}"
+eval "${COMMAND}"
