@@ -48,7 +48,7 @@ type Route
 
 routesData : List (RouteData msg)
 routesData =
-    [ { icon = Material.Icons.code, route = RoutePhysics2D, title = "Physics 2D", url = "physics-2d" }
+    [ { icon = Material.Icons.widgets, route = RoutePhysics2D, title = "Physics 2D", url = "physics-2d" }
     , { icon = Material.Icons.code, route = RouteRobot, title = "Robot", url = "robot" }
     , { icon = Material.Icons.code, route = RouteCar, title = "Car", url = "car" }
     , { icon = Material.Icons.code, route = RouteTurtleSquareSpiral, title = "Square Spiral", url = "square-spiral" }
