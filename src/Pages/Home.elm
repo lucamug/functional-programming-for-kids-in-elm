@@ -15,5 +15,5 @@ view model =
         , spacing 20
         ]
         [ paragraph [ Font.size 30 ] [ text "Under Construction" ]
-        , paragraph [] [ text "A collection of resources for teaching and learning Functional Programming to begineers." ]
+        , paragraph [] [ text "A collection of resources for teaching and learning Functional Programming, for begineers." ]
         ]
