@@ -10,10 +10,12 @@ view : Types.Model.Model -> Element msg
 view model =
     column
         [ centerX
-        , height (maximum 800 <| fill)
+        , width (maximum 600 <| fill)
         , paddingXY 20 100
         , spacing 20
+        , Font.center
+        , height fill
         ]
-        [ paragraph [ Font.size 30 ] [ text "Under Construction" ]
-        , paragraph [] [ text "A collection of resources for teaching and learning Functional Programming, for begineers." ]
+        [ paragraph [] [ text "Under Construction" ]
+        , paragraph [ Font.size 30 ] [ text "A collection of resources for teaching and learning Functional Programming, for begineers." ]
         ]
