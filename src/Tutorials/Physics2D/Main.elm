@@ -1,4 +1,4 @@
-module Tutorials.Physics2D.Main exposing (main, pointsInit, view)
+module Tutorials.Physics2D.Main exposing (Point, main, pointsInit, updatePoints, view)
 
 import Browser
 import Browser.Events

@@ -94,7 +94,10 @@ tree =
 
 squareSpiralCode : String
 squareSpiralCode =
-    """```squareSpiral : Html.Html msg
+    """
+# The code
+
+```squareSpiral : Html.Html msg
 squareSpiral =
     let
         iter : Int -> Float -> List Command

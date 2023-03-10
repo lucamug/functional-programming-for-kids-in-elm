@@ -11,8 +11,8 @@ import TurtleGraphics exposing (..)
 import Tutorials.Physics2D.Main
 
 
-view : Element msg
-view =
+view : List Tutorials.Physics2D.Main.Point -> Element msg
+view points =
     Shared.pageSkeleton
         { listParagraph = []
         , maybeSecondaryTitle = Nothing
@@ -20,8 +20,64 @@ view =
         , route = Route.RoutePhysics2D
         , theRest =
             [ column [ spacing 50, centerX ]
-                [ el [ centerX, Font.size 30 ] <| text "Under Construction"
-                , el [] <| html <| Tutorials.Physics2D.Main.view Tutorials.Physics2D.Main.pointsInit
+                [ el [ centerX ] <| html <| Tutorials.Physics2D.Main.view points
+                , Element.el [ Element.width Element.fill ] <| MarkdownElmUi.stringToElement markdown
+                , el [ centerX, Font.size 20 ] <| text "Under Construction"
                 ]
             ]
         }
+
+
+markdown : String
+markdown =
+    """
+# The code
+
+```
+updatePoints : List Point -> List Point
+updatePoints points =
+    List.map
+        (\\p ->
+            let
+                vx =
+                    (p.x - p.xOld) * const.friction
+
+                vy =
+                    (p.y - p.yOld) * const.friction
+
+                x1 =
+                    p.x + vx
+
+                y1 =
+                    p.y + vy + const.gravity
+
+                ( x, xOld ) =
+                    if x1 > w then
+                        ( w, w + vx * const.bounce )
+
+                    else if x1 < 0 then
+                        ( 0, vx * const.bounce )
+
+                    else
+                        ( x1, p.x )
+
+                ( y, yOld ) =
+                    if y1 > h then
+                        ( h, h + vy * const.bounce )
+
+                    else if y1 < 0 then
+                        ( 0, vy * const.bounce )
+
+                    else
+                        ( y1, p.y )
+            in
+            { x = x
+            , y = y
+            , xOld = xOld
+            , yOld = yOld
+            , color = p.color
+            }
+        )
+        points
+```
+"""

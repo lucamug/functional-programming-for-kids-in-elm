@@ -29,6 +29,7 @@ import Style
 import SyntaxHighlight
 import Task
 import Time
+import Tutorials.Physics2D.Main
 import Types.Model
 
 
@@ -80,6 +81,7 @@ init flags =
       , posixAtStart = posixAtStart
       , posix = posixAtStart
       , route = route
+      , physics2dPoints = Tutorials.Physics2D.Main.pointsInit
       }
     , Cmd.batch [ updateHtmlTitle route ]
     )
@@ -90,7 +92,10 @@ subscriptions model =
     Sub.batch
         [ Route.onUrlChange MsgUrlChanged
         , Browser.Events.onResize (\w _ -> MsgGotNewWidth w)
-        , if (model.route == Route.RouteCar || model.route == Route.RouteRobot) && not model.animationPaused then
+        , if (model.route == Route.RouteCar || model.route == Route.RouteRobot || model.route == Route.RoutePhysics2D) && not model.animationPaused then
+            Browser.Events.onAnimationFrame MsgTick
+
+          else if model.route == Route.RoutePhysics2D then
             Browser.Events.onAnimationFrame MsgTick
 
           else
@@ -134,7 +139,19 @@ update msg model =
             ( model, Route.pushUrl locationHref )
 
         MsgTick posix ->
-            ( { model | posix = posix }, Cmd.none )
+            let
+                newModel =
+                    if model.route == Route.RoutePhysics2D then
+                        if modBy 7 (Time.posixToMillis posix // 1000) == 0 then
+                            { model | physics2dPoints = Tutorials.Physics2D.Main.pointsInit }
+
+                        else
+                            { model | physics2dPoints = Tutorials.Physics2D.Main.updatePoints model.physics2dPoints }
+
+                    else
+                        model
+            in
+            ( { newModel | posix = posix }, Cmd.none )
 
         MsgUrlChanged locationHref ->
             let
@@ -308,7 +325,7 @@ viewPage model =
             Pages.Robot.view model MsgToggleAnimationPause
 
         Route.RoutePhysics2D ->
-            Pages.Physics2D.view
+            Pages.Physics2D.view model.physics2dPoints
 
         Route.RouteDifferences maybeString ->
             text "Hi"

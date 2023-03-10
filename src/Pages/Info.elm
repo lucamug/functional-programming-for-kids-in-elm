@@ -90,12 +90,21 @@ A practical teacher training (grade 4~8) for teachers wanting to adopt graphics 
 
 
 
+# Elm editors online
+
+* [http://elm-editor.com/](http://elm-editor.com/)
+* [https://ellie-app.com/new](https://ellie-app.com/new)
+* [https://elm-lang.org/try](https://elm-lang.org/try)
+* [https://guide.elm-lang.org/core_language.html](https://guide.elm-lang.org/core_language.html) with limited REPL interaction
+
+
+
+
+
+
+
 
 # Other Resources
-
-
-
-
 
 * [McMaster CAS Outreach · GitHub](https://github.com/MacCASOutreach)
 * [eBook/ThinkingAlgebraicallyWithElm.pdf at master · MacCASOutreach/eBook](https://github.com/MacCASOutreach/eBook/blob/master/ThinkingAlgebraicallyWithElm.pdf)
@@ -138,6 +147,6 @@ A practical teacher training (grade 4~8) for teachers wanting to adopt graphics 
 * [Writing a Physics Engine from scratch - YouTube](https://www.youtube.com/watch?v=lS_qeBy3aQI)
 * [05 - The simplest possible physics simulation method - YouTube](https://www.youtube.com/watch?v=qISgdDhdCro)
 * [Physics simulation - forming solids, liquids and gases from particles - YouTube](https://www.youtube.com/watch?v=SFf3pcE08NM) 
-
+* [https://nuplot.netlify.app/](https://nuplot.netlify.app/)
 
 """
